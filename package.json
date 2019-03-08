@@ -1,0 +1,26 @@
+{
+  "name": "blackout",
+  "version": "1.0.0",
+  "description": "idk",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jared4Robertson/Blackout.git"
+  },
+  "keywords": [
+    "black",
+    "out"
+  ],
+  "author": "Jared",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jared4Robertson/Blackout/issues"
+  },
+  "homepage": "https://github.com/Jared4Robertson/Blackout#readme",
+  "dependencies": {
+    "howler": "^2.1.1"
+  }
+}

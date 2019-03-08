@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+		<script src="node_modules/howler/src/howler.core.js"></script>
+		<script src="node_modules/howler/src/plugins/howler.spatial.js"></script>
+
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -32,21 +35,29 @@
 //   player.x-=7; 
 // });
 var
-/**
- * Constants
- */
+
 gameover=false,
 WIDTH  = 140,
 HEIGHT = 600,
 pi = Math.PI,
+SpaceBar=32,
 RightArrow = 39,
-UpArrow   = 32,
 DownArrow = 40,
 LeftArrow = 37,
-pop = new Audio('pop.mp3'),
-Lpop = new Audio('Lpop.mp3'),
-pop2 = new Audio('pop2.mp3'),
-HurryUp = new Audio('HurryUp.mp3'),
+pop = new Howl({
+	src: ['pop.mp3'],
+	format: "mp3",
+    html5: true,
+	}),
+
+Lpop = new Howl({
+	src: ['Lpop.mp3']}),
+pop2 = new Howl({
+	src: ['pop2.mp3']}),
+HurryUp = new Howl({
+	src: ['HurryUp.mp3']}),
+	
+
 /**
  * Game elements
  */
@@ -75,33 +86,34 @@ player = {
         
 		if (keystate[RightArrow]){this.x += 100; keystate[RightArrow]=false;}
              
-		if (keystate[LeftArrow]) this.x += 7; keystate[LeftArrow]=false;
+		if (keystate[LeftArrow]) this.x += 100; keystate[LeftArrow]=false;
 		// keep the paddle inside of the canvas
 		
         if(this.x>this.target){
             this.x=20;
-            this.y+=10;
-            ;
+            this.y-=10;
+			;
+			
             pop.play();
             //alert("pop");
             }
         if(this.x<this.Lefttarget){
             this.x=99;
-            this.y+=10;
+            this.y-=10;
             
             Lpop.play();
             //alert("pop");
             }
-        if(this.y<100){
+        if(this.y>600-this.height){
             
             pop2.play();
             gameover=true;
         }
-        this.y-=.1*this.z;
+        this.y+=.1*this.z;
         this.z+=.01
-        if(this.y<=200){
+        if(this.y>=400){
             
-            HurryUp.play();
+            
         }
 
 	},
@@ -223,8 +235,9 @@ ball = {
 /**
  * Starts the game
  */
-function main() {
+function startgame() {
 	// create, initiate and append game canvas
+	alert("gamestarted");
 	canvas = document.createElement("canvas");
 	canvas.width = WIDTH;
 	canvas.height = HEIGHT;
@@ -236,22 +249,37 @@ function main() {
 	// 	keystate[evt.keyCode] = true;
 	// });
 	document.addEventListener("keyup", function(evt) {
+		//HurryUp.play();
 		keystate[evt.keyCode] = true;
+		if(evt.keyCode==RightArrow){
+			pop.pos(1000000,100000,0,pop.play())
+			//pop.play();}}
+		}
 	});
-	init(); // initiate game objects
+	//init(); // initiate game objects
 	// game loop function
-	var loop = function() {
-		update();
-		draw();
-        if(!gameover){
-		window.requestAnimationFrame(loop, canvas);}
-	};
-	window.requestAnimationFrame(loop, canvas);
+	// var loop = function() {
+		
+	// 	update();
+	// 	draw();
+    //     if(!gameover){
+	// 	window.requestAnimationFrame(loop, canvas);}
+	// };
+	//window.requestAnimationFrame(loop, canvas);
 }
 /**
  * Initatite game objects and set start positions
  */
+
+ document.addEventListener("keyup", function(evt) {
+		//HurryUp.play();
+		//keystate[evt.keyCode] = true;
+		if(evt.keyCode==SpaceBar){
+			startgame();
+		}
+	});
 function init() {
+	HurryUp.play();
 	player.x = player.width;
 	player.y = (HEIGHT - player.height)/2;
 	ai.x = WIDTH - (player.width + ai.width);
@@ -288,7 +316,7 @@ function draw() {
 	ctx.restore();
 }
 // start and run the game
-main();
+
 </script>
 </body>
 </html>
