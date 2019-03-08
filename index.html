@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
-		<script src="node_modules/howler/dist/howler.js"></script>
-		<script src="node_modules/howler/src/plugins/howler.spatial.js"></script>
+		<script src="howler.js"></script>
+		<script src="howler.spatial.min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <head>
@@ -45,7 +45,7 @@ RightArrow = 39,
 DownArrow = 40,
 LeftArrow = 37,
 pop = new Howl({
-	src: ['https://freesound.org/people/InspectorJ/sounds/411639/#'],
+	src: ['pop.mp3'],
 	format: "mp3",
     html5: true,
 	}),
@@ -252,7 +252,7 @@ function startgame() {
 		//HurryUp.play();
 		keystate[evt.keyCode] = true;
 		if(evt.keyCode==RightArrow){
-			pop.pos(1000000,100000,0,pop.play())
+			pop.pos(100,1,0,pop.play())
 			//pop.play();}}
 		}
 	});
