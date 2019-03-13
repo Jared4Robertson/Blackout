@@ -28,14 +28,12 @@
 </head>
 <body>
 <script>
-
 let clock
 time=0
 score = 0
 gameover=false
 WIDTH  = 140
 HEIGHT = 600
-pi = Math.PI
 SpaceBar=32
 RightArrow = 39
 DownArrow = 40
@@ -55,6 +53,9 @@ expo = new Howl({
 	src: ['explode.mp3'],
 	rate:4})
 let background;
+
+
+
 function startgame() {
 	gameisover=false;
 	background = back.play();
@@ -71,7 +72,6 @@ function startgame() {
 			else{
 				gameover1();
 			}
-	
 		}
 		if(evt.keyCode==LeftArrow){
 			expo.pos(-2,0,0,expo.play())
@@ -82,7 +82,6 @@ function startgame() {
 			else{
 				gameover1();
 			}
-		
 		}
 		if(evt.keyCode==DownArrow){
 			expo.pos(0,0,0,expo.play())
@@ -96,7 +95,9 @@ function startgame() {
 		}
 	});
 }
- document.addEventListener("keydown", function(evt) {
+
+
+document.addEventListener("keydown", function(evt) {
 		if(evt.keyCode==SpaceBar){
 			startgame();
 		}
@@ -120,7 +121,7 @@ function gameover1(){
 
 function myTimer() {
 	 if(time>1){
-		alert(ping);
+		
 		if(ping==0){
 			pop.pos(-10+time,0,0,pop.play())
 		}
