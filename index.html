@@ -43,12 +43,14 @@ function myTimer() {
 	time +=1;
 	if (time==10){
 		alert("gameover")
+		clearInterval(clock);
 		time=0;
 			}
             $(".time").text("Time: "+time);
 		}
 var clock
 time=0
+score = 0
 gameover=false
 WIDTH  = 140
 HEIGHT = 600
@@ -133,8 +135,9 @@ function startgame() {
 	});
 
 function loop(){
+	score+=1;
 	time = 0;
-	clock = setInterval(myTimer, 200);
+	clock = setInterval(myTimer, 500/score);
 	ping = Math.floor(Math.random() * 3); 
 }
 
