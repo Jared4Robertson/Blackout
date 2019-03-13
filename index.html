@@ -98,8 +98,12 @@ function startgame() {
 
 
 document.addEventListener("keydown", function(evt) {
+
 		if(evt.keyCode==SpaceBar){
-			startgame();
+			if(gameisover==true){
+				startgame();
+			}
+			
 		}
 	});
 
@@ -114,6 +118,7 @@ function gameover1(){
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
 	back.stop(background);
+	gameisover=true;
 }
 
  function myTimer() {
