@@ -30,10 +30,20 @@
 <script>
 
 function myTimer() {
-			time +=1;
-			if (time==5){
-				alert("gameover")
-				time=0;
+	ping = Math.floor(Math.random() * 3); 
+		if(ping==0){
+			pop.pos(-2,0,0,pop.play())
+		}
+		if(ping==1){
+			pop.pos(2,0,0,pop.play())
+		}
+		if(ping==2){
+			pop.pos(0,0,0,pop.play())
+		}
+	time +=1;
+	if (time==5){
+		alert("gameover")
+		time=0;
 			}
             $(".time").text("Time: "+time);
 		}
