@@ -57,7 +57,6 @@ let background;
 
 
 function startgame() {
-	gameisover=false;
 	background = back.play();
 	back.pos(0,30,0,background)
 	counter =0;
@@ -101,6 +100,7 @@ document.addEventListener("keydown", function(evt) {
 
 		if(evt.keyCode==SpaceBar){
 			if(gameisover==true){
+				gameisover=false;
 				startgame();
 			}
 			
