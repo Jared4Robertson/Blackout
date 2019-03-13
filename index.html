@@ -67,11 +67,12 @@ pop = new Howl({
 
 gameover = new Howl({
 	src: ['gameover.mp3']})
-background = new Howl({
+back = new Howl({
 	src: ['background.mp3'],
 	loop:true})
 HurryUp = new Howl({
-	src: ['HurryUp.mp3']})
+	src: ['HurryUp.mp3']}),
+background=back.play();
 	
 	
 	
@@ -146,7 +147,7 @@ function loop(){
 function gameover(){
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
-	unload();
+	stop(background);
 
 }
 
