@@ -59,7 +59,7 @@ function startgame() {
 	counter =0;
 	alert("gamestarted");
 	while (counter <=10){
-		loop();}
+		window.setTimeout(loop(),1000);}
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
@@ -94,7 +94,7 @@ ping = Math.floor(Math.random() * 3);
 	if(ping==2){
 		pop.pos(0,0,0,pop.play())
 	}
-//window.setTimeout(loop(),1000)
+
 counter+=1;
 }
 
