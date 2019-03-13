@@ -78,7 +78,7 @@ function startgame() {
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
-			pop.pos(2,0,0,pop.play())
+			//pop.pos(2,0,0,pop.play())
 			if (ping==1){
 				clearInterval(clock);
 				loop();
@@ -89,7 +89,7 @@ function startgame() {
 	
 		}
 		if(evt.keyCode==LeftArrow){
-			pop.pos(-2,0,0,pop.play())
+			//pop.pos(-2,0,0,pop.play())
 			if (ping==0){
 				clearInterval(clock);
 				loop();
@@ -100,7 +100,7 @@ function startgame() {
 		
 		}
 		if(evt.keyCode==DownArrow){
-			pop.pos(0,0,0,pop.play())
+			//pop.pos(0,0,0,pop.play())
 			if (ping==2){
 				clearInterval(clock);
 				loop();
