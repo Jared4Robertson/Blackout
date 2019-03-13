@@ -30,7 +30,7 @@
 <script>
 
 function myTimer() {
-	 
+	 if(time>1){
 		if(ping==0){
 			pop.pos(-2,0,0,pop.play())
 		}
@@ -39,9 +39,9 @@ function myTimer() {
 		}
 		if(ping==2){
 			pop.pos(0,0,0,pop.play())
-		}
+		}}
 	time +=1;
-	if (time==5){
+	if (time==10){
 		alert("gameover")
 		time=0;
 			}
@@ -134,19 +134,8 @@ function startgame() {
 
 function loop(){
 	time = 0;
-	clock = setInterval(myTimer, 500);
-	
+	clock = setInterval(myTimer, 200);
 	ping = Math.floor(Math.random() * 3); 
-		if(ping==0){
-			pop.pos(-2,0,0,pop.play())
-		}
-		if(ping==1){
-			pop.pos(2,0,0,pop.play())
-		}
-		if(ping==2){
-			pop.pos(0,0,0,pop.play())
-		}
-
 }
 
 </script>
