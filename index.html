@@ -42,7 +42,7 @@ function myTimer() {
 		}}
 	time +=1;
 	if (time==10){
-		gameover();
+		gameover1();
 			}
             $(".time").text("Time: "+time);
 		}
@@ -100,7 +100,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				gameover();
+				gameover1();
 			}
 	
 		}
@@ -111,7 +111,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				gameover()
+				gameover1();
 			}
 		
 		}
@@ -122,7 +122,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				gameover()
+				gameover1();
 			}
 		}
 	});
@@ -142,7 +142,7 @@ function loop(){
 	ping = Math.floor(Math.random() * 3); 
 }
 
-function gameover(){
+function gameover1(){
 	time=0;
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
