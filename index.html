@@ -37,6 +37,7 @@ function myTimer() {
             $(".time").text("Time: "+time);
 		}
 var clock = setInterval(myTimer, 1000);
+time=0
 gameover=false
 WIDTH  = 140
 HEIGHT = 600
@@ -70,7 +71,7 @@ function startgame() {
 	// 	alert("hi");
 	// 	counter+=1;}
 	loop();
-	clearInterval(clock);
+	
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
@@ -95,16 +96,18 @@ function startgame() {
 	});
 
 function loop(){
-ping = Math.floor(Math.random() * 3); 
-	if(ping==0){
-		pop.pos(-2,0,0,pop.play())
-	}
-	if(ping==1){
-		pop.pos(2,0,0,pop.play())
-	}
-	if(ping==2){
-		pop.pos(0,0,0,pop.play())
-	}
+	time = 0;
+	clearInterval(clock);
+	ping = Math.floor(Math.random() * 3); 
+		if(ping==0){
+			pop.pos(-2,0,0,pop.play())
+		}
+		if(ping==1){
+			pop.pos(2,0,0,pop.play())
+		}
+		if(ping==2){
+			pop.pos(0,0,0,pop.play())
+		}
 
 }
 
