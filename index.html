@@ -67,8 +67,8 @@ pop = new Howl({
 
 gameover = new Howl({
 	src: ['gameover.mp3']})
-pop2 = new Howl({
-	src: ['pop2.mp3']})
+background = new Howl({
+	src: ['background.mp3']})
 HurryUp = new Howl({
 	src: ['HurryUp.mp3']})
 	
@@ -78,14 +78,15 @@ HurryUp = new Howl({
 	
 
 function startgame() {
+	background.pos(0,0,5,background.play())
 	
 	counter =0;
-	alert("gamestarted");
+	
 	// while (counter <=10){
 	// 	window.setTimeout(loop(),1000);
 	// 	alert("hi");
 	// 	counter+=1;}
-	loop();
+	window.setTimeout(loop(), 4000);
 	
 	
 	document.addEventListener("keyup", function(evt) {
