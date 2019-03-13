@@ -110,12 +110,7 @@ function loop(){
 	clock = setInterval(myTimer, 200-score);	 
 }
 function gameover1(){
-	ping=0;
-	alert(ping);
-	gameisover=true;
-	time=0;
 	clearInterval(clock);
-	clock=0;
 	gameover.pos(0,0,0,gameover.play());
 	back.stop(background);
 }
