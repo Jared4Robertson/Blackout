@@ -61,8 +61,8 @@ function startgame() {
 	background = back.play();
 	back.pos(0,30,0,background)
 	counter =0;
-	window.setTimeout(loop(), 4000);
-	document.addEventListener("keyup", function(evt) {
+	window.setTimeout(loop(), 10000);
+	document.addEventListener("keydown", function(evt) {
 		if(evt.keyCode==RightArrow){
 			expo.pos(2,0,0,expo.play())
 			if (ping==1){
@@ -107,9 +107,10 @@ function loop(){
 	score+=1;
 	time = 0;
 	ping = Math.floor(Math.random() * 3);
-	clock = setInterval(myTimer, 200-score);	 
+	clock = setInterval(myTimer, 500-2*score);	 
 }
 function gameover1(){
+	score=0;
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
 	back.stop(background);
