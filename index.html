@@ -73,7 +73,7 @@ expo = new Howl({
 	rate:4})
 
 explode = expo.play
-background=back.play();
+background
 	
 	
 	
@@ -81,7 +81,8 @@ background=back.play();
 	
 
 function startgame() {
-	back.pos(0,0,15,background)
+	background = back.play();
+	back.pos(0,15,0,background)
 	
 	counter =0;
 	
@@ -94,7 +95,7 @@ function startgame() {
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
-			expo.pos(2,0,0,explode.play())
+			expo.pos(2,0,0,expo.play())
 			if (ping==1){
 				clearInterval(clock);
 				loop();
@@ -105,7 +106,7 @@ function startgame() {
 	
 		}
 		if(evt.keyCode==LeftArrow){
-			expo.pos(-2,0,0,explode.play())
+			expo.pos(-2,0,0,expo.play())
 			if (ping==0){
 				clearInterval(clock);
 				loop();
@@ -116,7 +117,7 @@ function startgame() {
 		
 		}
 		if(evt.keyCode==DownArrow){
-			expo.pos(0,0,0,explode.play())
+			expo.pos(0,0,0,expo.play())
 			if (ping==2){
 				clearInterval(clock);
 				loop();
