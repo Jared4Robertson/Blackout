@@ -42,7 +42,7 @@ function myTimer() {
 		}}
 	time +=1;
 	if (time==10){
-		alert("gameover")
+		gameover.pos(0,0,0,gameover.play())
 		clearInterval(clock);
 		time=0;
 			}
@@ -65,8 +65,8 @@ pop = new Howl({
 	format: "mp3",
 	})
 
-Lpop = new Howl({
-	src: ['Lpop.mp3']})
+gameover = new Howl({
+	src: ['gameover.mp3']})
 pop2 = new Howl({
 	src: ['pop2.mp3']})
 HurryUp = new Howl({
@@ -97,7 +97,7 @@ function startgame() {
 			}
 			else{
 				clearInterval(clock);
-				alert(ping)
+				gameover.pos(0,0,0,gameover.play())
 			}
 	
 		}
@@ -109,7 +109,7 @@ function startgame() {
 			}
 			else{
 				clearInterval(clock);
-				alert(ping)
+				gameover.pos(0,0,0,gameover.play())
 			}
 		
 		}
@@ -121,7 +121,7 @@ function startgame() {
 			}
 			else{
 				clearInterval(clock);
-				alert(ping)
+				gameover.pos(0,0,0,gameover.play())
 			}
 		}
 	});
