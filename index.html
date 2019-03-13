@@ -42,9 +42,7 @@ function myTimer() {
 		}}
 	time +=1;
 	if (time==10){
-		gameover.pos(0,0,0,gameover.play())
-		clearInterval(clock);
-		time=0;
+		gameover();
 			}
             $(".time").text("Time: "+time);
 		}
@@ -102,8 +100,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				clearInterval(clock);
-				gameover.pos(0,0,0,gameover.play())
+				gameover();
 			}
 	
 		}
@@ -114,8 +111,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				clearInterval(clock);
-				gameover.pos(0,0,0,gameover.play())
+				gameover()
 			}
 		
 		}
@@ -126,8 +122,7 @@ function startgame() {
 				loop();
 			}
 			else{
-				clearInterval(clock);
-				gameover.pos(0,0,0,gameover.play())
+				gameover()
 			}
 		}
 	});
@@ -148,6 +143,7 @@ function loop(){
 }
 
 function gameover(){
+	time=0;
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
 	stop(background);
