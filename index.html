@@ -29,7 +29,14 @@
 <body>
 <script>
 
-
+function myTimer() {
+			time +=1;
+			if (time==5){
+				alert("gameover")
+			}
+            $(".time").text("Time: "+time);
+		}
+var clock = setInterval(myTimer, 1000);
 gameover=false
 WIDTH  = 140
 HEIGHT = 600
@@ -62,7 +69,8 @@ function startgame() {
 	// 	window.setTimeout(loop(),1000);
 	// 	alert("hi");
 	// 	counter+=1;}
-	window.setInterval(loop(),1000);
+	loop();
+	clearInterval(clock);
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
