@@ -32,13 +32,13 @@
 function myTimer() {
 	 if(time>1){
 		if(ping==0){
-			pop.pos(-2,0,0,pop.play())
+			pop.pos(-10+time,0,0,pop.play())
 		}
 		if(ping==1){
-			pop.pos(2,0,0,pop.play())
+			pop.pos(10-time,0,0,pop.play())
 		}
 		if(ping==2){
-			pop.pos(0,0,0,pop.play())
+			pop.pos(0,10-time,0,pop.play())
 		}}
 	time +=1;
 	if (time==10){
