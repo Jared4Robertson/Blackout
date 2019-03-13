@@ -56,8 +56,10 @@ HurryUp = new Howl({
 	
 
 function startgame() {
+	counter =0;
 	alert("gamestarted");
-	loop();
+	while (counter <=10){
+		loop();}
 	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
@@ -92,8 +94,8 @@ ping = Math.floor(Math.random() * 3);
 	if(ping==2){
 		pop.pos(0,0,0,pop.play())
 	}
-	window.setTimeout(loop(),5000)
-
+//window.setTimeout(loop(),1000)
+counter+=1;
 }
 
 </script>
