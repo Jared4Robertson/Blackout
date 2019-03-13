@@ -80,30 +80,33 @@ function startgame() {
 		if(evt.keyCode==RightArrow){
 			pop.pos(2,0,0,pop.play())
 			if (ping==1){
-				clearInterval(clock)
+				clearInterval(clock);
+				loop();
 			}
 			else{
-				alert("gameover", ping)
+				alert(ping)
 			}
 	
 		}
 		if(evt.keyCode==LeftArrow){
 			pop.pos(-2,0,0,pop.play())
 			if (ping==0){
-				clearInterval(clock)
+				clearInterval(clock);
+				loop();
 			}
 			else{
-				alert("gameover",ping)
+				alert(ping)
 			}
 		
 		}
 		if(evt.keyCode==DownArrow){
 			pop.pos(0,0,0,pop.play())
 			if (ping==2){
-				clearInterval(clock)
+				clearInterval(clock);
+				loop();
 			}
 			else{
-				alert("gameover",ping)
+				alert(ping)
 			}
 		}
 	});
