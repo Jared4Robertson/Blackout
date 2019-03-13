@@ -68,7 +68,8 @@ pop = new Howl({
 gameover = new Howl({
 	src: ['gameover.mp3']})
 background = new Howl({
-	src: ['background.mp3']})
+	src: ['background.mp3'],
+	loop:true})
 HurryUp = new Howl({
 	src: ['HurryUp.mp3']})
 	
@@ -78,7 +79,7 @@ HurryUp = new Howl({
 	
 
 function startgame() {
-	background.pos(0,0,5,background.play())
+	background.pos(0,0,15,background.play())
 	
 	counter =0;
 	
@@ -140,6 +141,13 @@ function loop(){
 	time = 0;
 	clock = setInterval(myTimer, 200-score);
 	ping = Math.floor(Math.random() * 3); 
+}
+
+function gameover(){
+	clearInterval(clock);
+	gameover.pos(0,0,0,gameover.play());
+	stop(gameover);
+
 }
 
 </script>
