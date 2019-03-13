@@ -29,7 +29,7 @@
 <body>
 <script>
 
-var clock
+let clock
 time=0
 score = 0
 gameover=false
@@ -120,6 +120,7 @@ function gameover1(){
 
 function myTimer() {
 	 if(time>1){
+		alert(ping);
 		if(ping==0){
 			pop.pos(-10+time,0,0,pop.play())
 		}
