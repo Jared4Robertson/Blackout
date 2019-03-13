@@ -29,23 +29,6 @@
 <body>
 <script>
 
-function myTimer() {
-	 if(time>1){
-		if(ping==0){
-			pop.pos(-10+time,0,0,pop.play())
-		}
-		if(ping==1){
-			pop.pos(10-time,0,0,pop.play())
-		}
-		if(ping==2){
-			pop.pos(0,0,0,pop.play())
-		}}
-	time +=1;
-	if (time==10){
-		gameover1();
-			}
-            $(".time").text("Time: "+time);
-		}
 var clock
 time=0
 score = 0
@@ -58,11 +41,11 @@ RightArrow = 39
 DownArrow = 40
 LeftArrow = 37
 let ping
+let gameisover=true
 pop = new Howl({
 	src: ['pop.mp3'],
 	format: "mp3",
 	})
-
 gameover = new Howl({
 	src: ['gameover.mp3']})
 back = new Howl({
@@ -71,28 +54,13 @@ back = new Howl({
 expo = new Howl({
 	src: ['explode.mp3'],
 	rate:4})
-
-
 let background;
-	
-	
-	
-	
-	
-
 function startgame() {
+	gameisover=false;
 	background = back.play();
 	back.pos(0,15,0,background)
-	
 	counter =0;
-	
-	// while (counter <=10){
-	// 	window.setTimeout(loop(),1000);
-	// 	alert("hi");
-	// 	counter+=1;}
 	window.setTimeout(loop(), 4000);
-	
-	
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
 			expo.pos(2,0,0,expo.play())
@@ -129,8 +97,6 @@ function startgame() {
 	});
 }
  document.addEventListener("keydown", function(evt) {
-		//HurryUp.play();
-		//keystate[evt.keyCode] = true;
 		if(evt.keyCode==SpaceBar){
 			startgame();
 		}
@@ -140,18 +106,34 @@ function loop(){
 	score+=1;
 	time = 0;
 	ping = Math.floor(Math.random() * 3);
-	clock = setInterval(myTimer, 200-score);
-	 
+	clock = setInterval(myTimer(), 200-score);	 
 }
-
 function gameover1(){
+	gameisover=true;
+	ping=0;
 	time=0;
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
 	back.stop(background);
-
 }
 
+function myTimer() {
+	 if(time>1){
+		if(ping==0){
+			pop.pos(-10+time,0,0,pop.play())
+		}
+		if(ping==1){
+			pop.pos(10-time,0,0,pop.play())
+		}
+		if(ping==2){
+			pop.pos(0,0,0,pop.play())
+		}}
+	time +=1;
+	if (time==10){
+		gameover1();
+			}
+            $(".time").text("Time: "+time);
+		}
 </script>
 </body>
 </html>
