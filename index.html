@@ -33,6 +33,7 @@ function myTimer() {
 			time +=1;
 			if (time==5){
 				alert("gameover")
+				time=0;
 			}
             $(".time").text("Time: "+time);
 		}
@@ -46,6 +47,7 @@ SpaceBar=32
 RightArrow = 39
 DownArrow = 40
 LeftArrow = 37
+let ping
 pop = new Howl({
 	src: ['pop.mp3'],
 	format: "mp3",
@@ -77,14 +79,32 @@ function startgame() {
 	document.addEventListener("keyup", function(evt) {
 		if(evt.keyCode==RightArrow){
 			pop.pos(2,0,0,pop.play())
+			if (ping==1){
+				clearInterval(clock)
+			}
+			else{
+				alert("gameover")
+			}
 	
 		}
 		if(evt.keyCode==LeftArrow){
 			pop.pos(-2,0,0,pop.play())
+			if (ping==0){
+				clearInterval(clock)
+			}
+			else{
+				alert("gameover")
+			}
 		
 		}
 		if(evt.keyCode==DownArrow){
 			pop.pos(0,0,0,pop.play())
+			if (ping==2){
+				clearInterval(clock)
+			}
+			else{
+				alert("gameover")
+			}
 		}
 	});
 }
