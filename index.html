@@ -107,7 +107,7 @@ function loop(){
 	score+=1;
 	time = 0;
 	ping = Math.floor(Math.random() * 3);
-	clock = setInterval(myTimer(ping), 200-score);	 
+	clock = setInterval(yes(ping), 200-score);	 
 }
 function gameover1(){
 	clearInterval(clock);
@@ -115,7 +115,7 @@ function gameover1(){
 	back.stop(background);
 }
 
-function myTimer(ping) {
+yes = function myTimer(ping) {
 	 if(time>1){
 		
 		if(ping==0){
