@@ -109,9 +109,9 @@ function loop(){
 	clock = setInterval(myTimer, 200-score);	 
 }
 function gameover1(){
+	ping=0;
 	alert(ping);
 	gameisover=true;
-	ping=0;
 	time=0;
 	clearInterval(clock);
 	gameover.pos(0,0,0,gameover.play());
@@ -133,7 +133,7 @@ function myTimer() {
 	if (time==10){
 		gameover1();
 			}
-            $(".time").text("Time: "+time);
+            $(".time").text("Time: "+ping);
 		}
 </script>
 </body>
