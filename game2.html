@@ -1,19 +1,8 @@
 <!doctype html>
 <html lang="en">
-		<script src="howler.js"></script>
-		<script src="howler.spatial.min.js"></script>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-       
-        <meta name="msapplication-TileColor" content="#2b5797">
-        <meta name="theme-color" content="#ffffff">
-        
 	<meta charset="UTF-8">
-	<title>Blackout</title>
+	<title>Pong</title>
 
 	<!-- Basic styling, centering the canvas -->
 	<style>
@@ -30,32 +19,15 @@
 </head>
 <body>
 <script>
-// $(document).keyup(function(event){
-//   player.x-=7; 
-// });
 var
-
-gameover=false,
-WIDTH  = 140,
+/**
+ * Constants
+ */
+WIDTH  = 700,
 HEIGHT = 600,
 pi = Math.PI,
-SpaceBar=32,
-RightArrow = 39,
+UpArrow   = 38,
 DownArrow = 40,
-LeftArrow = 37,
-pop = new Howl({
-	src: ['pop.mp3'],
-	format: "mp3",
-	}),
-
-Lpop = new Howl({
-	src: ['Lpop.mp3']}),
-pop2 = new Howl({
-	src: ['pop2.mp3']}),
-HurryUp = new Howl({
-	src: ['HurryUp.mp3']}),
-	
-
 /**
  * Game elements
  */
@@ -69,57 +41,23 @@ keystate,
  */
 player = {
 	x: null,
-    w: 60,
 	y: null,
-    z:1,
-    target: 100,
-    Lefttarget:19,
 	width:  20,
-	height: 20,
+	height: 100,
 	/**
 	 * Update the position depending on pressed keys
 	 */
-    
 	update: function() {
-        
-		if (keystate[RightArrow]){this.x += 100; keystate[RightArrow]=false;}
-             
-		if (keystate[LeftArrow]) this.x += 100; keystate[LeftArrow]=false;
+		if (keystate[UpArrow]) this.y -= 7;
+		if (keystate[DownArrow]) this.y += 7;
 		// keep the paddle inside of the canvas
-		
-        if(this.x>this.target){
-            this.x=20;
-            this.y-=10;
-			;
-			
-            pop.play();
-            //alert("pop");
-            }
-        if(this.x<this.Lefttarget){
-            this.x=99;
-            this.y-=10;
-            
-            Lpop.play();
-            //alert("pop");
-            }
-        if(this.y>600-this.height){
-            
-            pop2.play();
-            gameover=true;
-        }
-        this.y+=.1*this.z;
-        this.z+=.01
-        if(this.y>=400){
-            
-            
-        }
-
+		this.y = Math.max(Math.min(this.y, HEIGHT - this.height), 0);
 	},
 	/**
 	 * Draw the player paddle to the canvas
 	 */
 	draw: function() {
-		ctx.fillRect(this.w, this.y, this.width, this.height);
+		ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
 },
 /**
@@ -233,9 +171,8 @@ ball = {
 /**
  * Starts the game
  */
-function startgame() {
+function main() {
 	// create, initiate and append game canvas
-	alert("gamestarted");
 	canvas = document.createElement("canvas");
 	canvas.width = WIDTH;
 	canvas.height = HEIGHT;
@@ -243,49 +180,25 @@ function startgame() {
 	document.body.appendChild(canvas);
 	keystate = {};
 	// keep track of keyboard presses
-	// document.addEventListener("keydown", function(evt) {
-	// 	keystate[evt.keyCode] = true;
-	// });
-	document.addEventListener("keyup", function(evt) {
-		//HurryUp.play();
+	document.addEventListener("keydown", function(evt) {
 		keystate[evt.keyCode] = true;
-		if(evt.keyCode==RightArrow){
-			pop.pos(1,0,0,pop.play())
-			//pop.play();}}
-		}
-		if(evt.keyCode==LeftArrow){
-			pop.pos(-1,0,0,pop.play())
-			//pop.play();}}
-		}
-		if(evt.keyCode==DownArrow){
-			pop.pos(0,0,0,pop.play())
-			//pop.play();}}
-		}
 	});
-	//init(); // initiate game objects
+	document.addEventListener("keyup", function(evt) {
+		delete keystate[evt.keyCode];
+	});
+	init(); // initiate game objects
 	// game loop function
-	// var loop = function() {
-		
-	// 	update();
-	// 	draw();
-    //     if(!gameover){
-	// 	window.requestAnimationFrame(loop, canvas);}
-	// };
-	//window.requestAnimationFrame(loop, canvas);
+	var loop = function() {
+		update();
+		draw();
+		window.requestAnimationFrame(loop, canvas);
+	};
+	window.requestAnimationFrame(loop, canvas);
 }
 /**
  * Initatite game objects and set start positions
  */
-
- document.addEventListener("keyup", function(evt) {
-		//HurryUp.play();
-		//keystate[evt.keyCode] = true;
-		if(evt.keyCode==SpaceBar){
-			startgame();
-		}
-	});
 function init() {
-	HurryUp.play();
 	player.x = player.width;
 	player.y = (HEIGHT - player.height)/2;
 	ai.x = WIDTH - (player.width + ai.width);
@@ -296,9 +209,9 @@ function init() {
  * Update all game objects
  */
 function update() {
-	//ball.update();
+	ball.update();
 	player.update();
-	//ai.update();
+	ai.update();
 }
 /**
  * Clear canvas and draw all game objects and net
@@ -307,22 +220,22 @@ function draw() {
 	ctx.fillRect(0, 0, WIDTH, HEIGHT);
 	ctx.save();
 	ctx.fillStyle = "#fff";
-	//ball.draw();
+	ball.draw();
 	player.draw();
-	//ai.draw();
-	//draw the net
+	ai.draw();
+	// draw the net
 	var w = 4;
 	var x = (WIDTH - w)*0.5;
 	var y = 0;
 	var step = HEIGHT/20; // how many net segments
-	// while (y < HEIGHT) {
-	// 	ctx.fillRect(x, y+step*0.25, w, step*0.5);
-	// 	y += step;
-	// }
+	while (y < HEIGHT) {
+		ctx.fillRect(x, y+step*0.25, w, step*0.5);
+		y += step;
+	}
 	ctx.restore();
 }
 // start and run the game
-
+main();
 </script>
 </body>
 </html>
