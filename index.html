@@ -63,6 +63,7 @@ function startgame() {
 	counter =0;
 	window.setTimeout(loop(), 10000);
 	document.addEventListener("keydown", function(evt) {
+		if(!gameisover){
 		if(evt.keyCode==RightArrow){
 			expo.pos(2,0,0,expo.play())
 			if (ping==1){
@@ -93,7 +94,7 @@ function startgame() {
 				gameover1();
 			}
 		}
-	});
+	}});
 }}
 
 
